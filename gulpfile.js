@@ -8,8 +8,11 @@ gulp.task('autoCommit', function () {
 gulp.task('default', function () {
     gulp.watch('app.js', function (event) {
         // console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+        let smallthing = 'smallchange'
         console.log(event)
-        gulp.src('*')
-            .pipe(git.commit('initial commit123'));
+        gulp.src('app.js')
+            .pipe(git.commit(smallthing))
+
+        
     });
 })
