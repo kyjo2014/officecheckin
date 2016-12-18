@@ -24,7 +24,7 @@ app.get('/:username', (req, res) => {
     let time = new Date()
 
     res.send({
-        "yourIP": req.ip,
+        "yourIP": req.rawHeaders,
         "time": time.getTime,
         "username": req.params.username
     })
