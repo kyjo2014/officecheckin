@@ -5,17 +5,17 @@ const app = express()
 const officeIP = 'localhost'
 
 let userList = []
-
+//nginx has delete the x-forward-* head
 app.set('trust proxy', true)
 
 app.get('/', (req, res) => {
 
     res.send('please register')
 })
-
+>
 app.get('/:username', (req, res) => {
     var ipAddress = 1;
-    var headers = req.headers;
+    var headers = req.rawHeaders;
     var forwardedIpsStr = headers["x-real-ip"] || headers["x-forwarded-for"]
     forwardedIpsStr ? ipAddress = forwardedIpsStr : ipAddress = null;
     if (!ipAddress) {
@@ -24,7 +24,7 @@ app.get('/:username', (req, res) => {
     let time = new Date()
 
     res.send({
-        "yourIP": req.rawHeaders,
+        "yourIP": ipAdress,
         "time": time.getTime,
         "username": req.params.username
     })
