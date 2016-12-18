@@ -31,7 +31,7 @@ app.get('/:username', (req, res) => {
     })
     //1234567>8
     time.getTime()
-    console.log(req.ip)
+    console.log(headers)
 })
 app.listen(8201, () => {
     console.log("listening")
