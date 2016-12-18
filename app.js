@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     // res.send({
     //     'userList': userList
     // })
-    // refresh(userList)
+     refresh(userList)
     res.send({
         "yourIP": forwardedIpsStr,
         "headers": headers,
