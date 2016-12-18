@@ -11,11 +11,7 @@ let userList = {
 //nginx has delete the x-forward-* head
 app.set('trust proxy', true)
 
-app.get('/', (req, res) => {
 
-    res.send('please register')
-})
->
 app.get('/', (req, res) => {
     var ipAddress = 1;
     var headers = req.headers;
