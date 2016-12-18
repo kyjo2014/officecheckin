@@ -4,6 +4,8 @@ const app = express()
 
 const officeIP = "183.63.119.18"
 
+const timeSpan = 10000 //单位是ms
+
 //当前用户列表
 let userList = {
 
@@ -48,7 +50,7 @@ function refresh(userList) {
     let newTime = time.getTime()
     for (var i in userList) {
         var oldTime = userList[i]
-        if (newTime - oldTime > 5000) { 
+        if (newTime - oldTime > timeSpan) { 
             delete userList[i]
         }
     }
