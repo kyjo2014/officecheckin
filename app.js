@@ -12,27 +12,27 @@ app.get('/', (req, res) => {
 
     res.send('please register')
 })
-    >
-    app.get('/:username', (req, res) => {
-        var ipAddress = 1;
-        var headers = req.rawHeaders;
-        var forwardedIpsStr = headers["x-real-ip"] || headers["x-forwarded-for"]
-        forwardedIpsStr ? ipAddress = forwardedIpsStr : ipAddress = null;
-        if (!ipAddress) {
-            ipAddress = req.connection.remoteAddress;
-        }
-        let time = new Date()
+>
+app.get('/:username', (req, res) => {
+    var ipAddress = 1;
+    var headers = req.rawHeaders;
+    var forwardedIpsStr = headers["x-real-ip"] || headers["x-forwarded-for"]
+    forwardedIpsStr ? ipAddress = forwardedIpsStr : ipAddress = null;
+    if (!ipAddress) {
+        ipAddress = req.connection.remoteAddress;
+    }
+    let time = new Date()
 
-        res.send({
-            "yourIP": ipAddress,
-            "headers": forwardedIpsStr,
-            "time": time.getTime,
-            "username": req.params.username
-        })
-        //1234567>8
-        time.getTime()
-        console.log(req.ip)
+    res.send({
+        "yourIP": ipAddress,
+        "headers": headers,
+        "time": time.getTime,
+        "username": req.params.username
     })
+    //1234567>8
+    time.getTime()
+    console.log(req.ip)
+})
 app.listen(8201, () => {
     console.log("listening")
 })
