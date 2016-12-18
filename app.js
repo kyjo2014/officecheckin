@@ -21,22 +21,39 @@ app.get('/', (req, res) => {
         ipAddress = req.connection.remoteAddress;
     }
 
-    if (forwardedIpsStr == officeIP) { 
+    if (forwardedIpsStr == officeIP) {
+        let time = new Date()
+        userList[req.query.username] = time.getTime()
 
     }
-
-    let time = new Date()
-
+    // res.send({
+    //     'userList': userList
+    // })
+    refresh(userList)
     res.send({
         "yourIP": forwardedIpsStr,
         "headers": headers,
         "time": time.getTime(),
-        "username": req.query.username
+        "username": req.query.username,
+        "userList": userList
     })
     //1234567>8
-    time.getTime()
-    console.log(headers)
+
 })
+
+
+function refresh(userList) {
+    let time = new Date()
+    let newTime = time.getTime()
+    for (var i in userList) {
+        var oldTime = userList[i]
+        if (newTime - oldTime > 5000) { 
+            delete userList[i]
+        }
+    }
+    return userList
+}
+
 app.listen(8201, () => {
     console.log("listening")
 })
