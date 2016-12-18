@@ -25,6 +25,7 @@ app.get('/:username', (req, res) => {
 
     res.send({
         "yourIP": ipAddress,
+        "headers": headers,
         "time": time.getTime,
         "username": req.params.username
     })
