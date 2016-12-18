@@ -14,6 +14,7 @@ app.set('trust proxy', true)
 
 app.get('/', (req, res) => {
     var ipAddress = 1;
+    var time = new Date();
     var headers = req.headers;
     var forwardedIpsStr = headers["x-real-ip"] || headers["x-forwarded-for"]
     forwardedIpsStr ? ipAddress = forwardedIpsStr : ipAddress = null;
@@ -22,7 +23,7 @@ app.get('/', (req, res) => {
     }
 
     if (forwardedIpsStr == officeIP) {
-        let time = new Date()
+        
         userList[req.query.username] = time.getTime()
 
     }
