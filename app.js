@@ -24,9 +24,9 @@ app.get('/:username', (req, res) => {
     let time = new Date()
 
     res.send({
-        "yourIP": ipAddress,
+        "yourIP": forwardedIpsStr,
         "headers": headers,
-        "time": time.getTime,
+        "time": time.getTime(),
         "username": req.params.username
     })
     //1234567>8
