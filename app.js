@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 app.get('/:username', (req, res) => {
     var ipAddress = 1;
     var headers = req.headers;
-    var forwardedIpsStr = headers[1] 
+    var forwardedIpsStr = headers["x-real-ip"] 
     forwardedIpsStr ? ipAddress = forwardedIpsStr : ipAddress = null;
     if (!ipAddress) {
         ipAddress = req.connection.remoteAddress;
