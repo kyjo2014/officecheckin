@@ -2,7 +2,7 @@ let express = require('express')
 
 const app = express()
 
-const officeIP = 'localhost'
+const officeIP = "183.63.119.18"
 
 //当前用户列表
 let userList = {
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     // res.send({
     //     'userList': userList
     // })
-    refresh(userList)
+    // refresh(userList)
     res.send({
         "yourIP": forwardedIpsStr,
         "headers": headers,
