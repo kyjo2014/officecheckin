@@ -24,10 +24,17 @@ app.get('/', (req, res) => {
         ipAddress = req.connection.remoteAddress;
     }
 
-    if (forwardedIpsStr == officeIP &&　req.query.username　) {
-        
-        userList[req.query.username] = {}
-        userList[req.query.username].time = time.getTime()
+    if (forwardedIpsStr == officeIP && 　req.query.username) {
+        if (!userList.hasOwnProperty(req.query.username)) {
+            userList[req.query.username] = {
+                "time": time.getTime(),
+                "alarm": false
+            }
+
+        } else {
+            userList[req.query.username].time = time.getTime()
+        }
+
     }
     // res.send({
     //     'userList': userList
@@ -40,7 +47,7 @@ app.get('/', (req, res) => {
         "userList": userList,
         "isAlarm": isAlarm(userList[req.query.username])
     })
-    if(userList[req.query.username])
+    if (userList[req.query.username])
         userList[req.query.username].alarm = false;
     //1234567>8
 
@@ -48,16 +55,28 @@ app.get('/', (req, res) => {
 
 app.get('/alarm', (req, res) => {
     if (req.query.username) {
-        userList[req.username].alarm = true;
+        if (userList.hasOwnProperty(req.query.username)) {
+            userList[req.query.username].alarm = true;
+            res.send({
+                "status": "accept"
+            })  
+        } else {
+             res.send({
+                "status": "user not exist"
+            }) 
+        }
+
+    } else {
+         res.send({
+                "status": " username required"
+            }) 
     }
-    res.send({
-        "status": "accept"
-    })
+
 })
 
 
 function isAlarm(user) {
-    if(user)
+    if (user)
         return user.alarm == true
     return false
 }
@@ -67,7 +86,7 @@ function refresh(userList) {
     let newTime = time.getTime()
     for (var i in userList) {
         var oldTime = userList[i].time
-        if (newTime - oldTime > timeSpan) { 
+        if (newTime - oldTime > timeSpan) {
             delete userList[i]
         }
     }
