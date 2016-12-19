@@ -6,6 +6,6 @@ app
 
 web/*
 
-!web/dist
+!web/dist/index.html
 
 
