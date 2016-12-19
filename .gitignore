@@ -5,4 +5,7 @@ checkin
 
 app
 
-web
+/web/*
+
+!/web/dist/
+
