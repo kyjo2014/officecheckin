@@ -2,7 +2,7 @@ let express = require('express')
 
 const app = express()
 
-const officeIP = "183.63.119.18"//检查点IP
+const officeIP = "183.63.119.47"//检查点IP
 
 const timeSpan = 10000 //单位是ms
 
