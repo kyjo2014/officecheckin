@@ -2,10 +2,10 @@
 node_modules
 
 checkin
-
 app
 
-/web/*
+web/*
 
-!/web/dist/
+!web/dist
+
 
