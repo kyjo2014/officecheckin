@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
     if (forwardedIpsStr == officeIP &&　req.query.username　) {
         
         userList[req.query.username] = {}
-        userList[req.query.username][time] = time.getTime()
+        userList[req.query.username].time = time.getTime()
     }
     // res.send({
     //     'userList': userList
