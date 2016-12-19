@@ -2,7 +2,7 @@ let express = require('express')
 
 const app = express()
 
-const officeIP = "183.63.119.18"
+const officeIP = "183.63.119.18"//检查点IP
 
 const timeSpan = 10000 //单位是ms
 
@@ -35,7 +35,6 @@ app.get('/', (req, res) => {
      refresh(userList)
     res.send({
         "yourIP": forwardedIpsStr,
-        "headers": headers,
         "time": time.getTime(),
         "username": req.query.username,
         "userList": userList
