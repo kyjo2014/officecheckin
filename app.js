@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
         ipAddress = req.connection.remoteAddress;
     }
 
-    if (forwardedIpsStr == officeIP) {
+    if (forwardedIpsStr == officeIP &&　req.query.username　) {
         
         userList[req.query.username] = time.getTime()
 
